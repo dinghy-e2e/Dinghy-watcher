@@ -1,0 +1,17 @@
+version: "3.9"
+services:
+  app:
+    image: test
+    build: 
+      dockerfile: ./api-server/Dockerfile
+      context: ./api-server/
+    command: 
+      - npm
+      - run 
+      - idev
+    ports:
+      - 3000:3000
+      - 9229:9229
+    volumes:
+      - ./src:/app
+      - ../credentials:/root/.aws/credentials
