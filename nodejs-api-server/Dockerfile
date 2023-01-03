@@ -1,4 +1,4 @@
-FROM alpine:edge
+FROM alpine:3.17
 WORKDIR /app
 COPY ./src .
 RUN apk upgrade && apk add bash curl nodejs=18.12.1-r0 npm=9.1.2-r0

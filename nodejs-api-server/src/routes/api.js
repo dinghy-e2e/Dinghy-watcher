@@ -21,15 +21,19 @@ router.use((req, res, next) => {
 })
 // define the home page route
 router.get('/', (req, res) => {
-  var ec2 = new AWS.EC2();
-  ec2.describeInstances( function(err, data) {
-    console.log("\nIn describe instances:\n");
-  if (err) console.log(err, err.stack); // an error occurred
-  else{
-    console.log("\n\n" + data.Stringy + "\n\n"); // successful response
+  var ec2 = new AWS.EC2({apiVersion: '2016-11-15'});
+  var params = {
+    DryRun: false
+  };
+  // Call EC2 to retrieve policy for selected bucket
+  ec2.describeInstances(params, function(err, data) {
+    if (err) {
+      console.log("Error", err.stack);
+    } else {
+      console.log("Success", JSON.stringify(data));
+    }
+  });
 
-  }
-});
   res.send('AWS actions')
 })
 // define the about route
