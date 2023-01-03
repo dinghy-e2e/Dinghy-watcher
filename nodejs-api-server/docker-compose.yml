@@ -1,0 +1,13 @@
+version: "3.9"
+services:
+  app:
+    image: test
+    build: .
+    ports:
+      - 3000:3000
+      - 9229:9229
+    volumes:
+      - ./src:/app
+      - ../credentials:/root/.aws/credentials
+    # volumes:
+    #   - /path/to/aws/credfile:/root/.aws/credentials
